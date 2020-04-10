@@ -78,8 +78,6 @@ class BingoColumn extends React.Component {
         const { id } = this.props;
         var board = JSON.parse(cookies.cookies.board);
 
-        console.log('rendercolumn')
-        console.log(board)
         return (
 
             <div className='fl w-20'>

@@ -1,14 +1,10 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import BingoList from './components/BingoList';
-import { useCookies } from 'react-cookie';
 import ResetButton from './components/ResetButton';
 
 import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
-import { render } from 'react-dom';
-
 function GenerateBoard() {
   return `
  { 
@@ -38,17 +34,14 @@ constructor(props){
     }
 
     if (!cookies.cookies.initialized) {
-      console.log('hi')
       cookies.set('board', GenerateBoard(), { path: '/' })
       cookies.set('initialized', true, { path: '/' })
     }
 
-console.log(cookies)
   }
 
   onClick = () =>
   {
-    console.log('onClick')
     const { cookies } = this.props;
     cookies.set('initialized', false, { path: '/' })
     this.Initialize();

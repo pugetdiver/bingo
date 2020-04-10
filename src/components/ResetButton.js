@@ -1,21 +1,7 @@
 import React from 'react'
 
-import { instanceOf } from 'prop-types';
-import { withCookies, Cookies } from 'react-cookie';
-import { render } from 'react-dom';
-
-
-
 
 class ResetButton extends React.Component {
-
-    static propTypes = {
-        cookies: instanceOf(Cookies).isRequired
-    };
-
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         return (
@@ -28,4 +14,4 @@ class ResetButton extends React.Component {
     }
 }
 
-export default withCookies(ResetButton);
+export default ResetButton;
