@@ -1,10 +1,17 @@
 import React from 'react'
 import './Bingo.css'
 
+import { instanceOf } from 'prop-types';
+import { withCookies, Cookies } from 'react-cookie';
+
 class Bingo extends React.Component {
 
-    constructor(){
-        super();
+    static propTypes = {
+        cookies: instanceOf(Cookies).isRequired
+    };
+
+    constructor(props){
+        super(props);
         this.state = {
             select: false
         }
@@ -12,21 +19,19 @@ class Bingo extends React.Component {
 
     SelectNumber = () =>
     {
-     //   console.log('select');
-        this.setState(state => {
-            return {select: true}
-        });
-    }
+        const { cookies } = this.props;
+        const { id, row } = this.props;
+        var board = JSON.parse(cookies.cookies.board);
 
-    DeSelectNumber = () =>
-    {
-      //  console.log('deselect')
-        this.setState(state => {
-            return {select: false}
-        });
+        board.selected[id][row] = !board.selected[id][row];
+        cookies.set('board', board, { path: '/' })
+       
     }
-
+    
     render() {
+        const { cookies } = this.props;
+        const { id, row } = this.props;
+        var board = JSON.parse(cookies.cookies.board);
 
         if (this.props.free === true) {
 
@@ -36,9 +41,9 @@ class Bingo extends React.Component {
             </div>
             )
         }
-        else if(this.state.select) {
+        else if(board.selected[id][row]) {
             return (
-            <div onClick={this.DeSelectNumber} className='bg-light-green dib br3 pa3 ma2  bw2 shadow-5 fl w-100'>
+            <div onClick={this.SelectNumber} className='bg-light-green dib br3 pa3 ma2  bw2 shadow-5 fl w-100'>
               {this.props.num}
             </div>
             )
@@ -55,4 +60,4 @@ class Bingo extends React.Component {
 }
 
 
-export default Bingo
+export default withCookies( Bingo)
