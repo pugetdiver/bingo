@@ -8,11 +8,11 @@ const BingoList = () =>{
 
     return (
         <div>
-            <BingoColumn  letter={'B'}  max={'1'} />
-            <BingoColumn  letter={'I'}  max={'2'} />
-            <BingoColumn  letter={'N'} max={null} />
-            <BingoColumn  letter={'G'}  max={'3'} />
-            <BingoColumn  letter={'O'} max={'4'} />
+            <BingoColumn  letter={'B'} min={'1'} max={'15'} free={false}/>
+            <BingoColumn  letter={'I'}  min={'16'} max={'30'} free={false} />
+            <BingoColumn  letter={'N'} min={'31'} max={'45'} free={true} />
+            <BingoColumn  letter={'G'}  min={'46'} max={'60'} free={false} />
+            <BingoColumn  letter={'O'}min={'61'} max={'75'} free={false} />
     </div>
     )
 

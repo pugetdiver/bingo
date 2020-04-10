@@ -6,8 +6,7 @@ class Bingo extends React.Component {
     constructor(){
         super();
         this.state = {
-            select: false,
-            num: 0
+            select: false
         }
     }
 
@@ -29,16 +28,7 @@ class Bingo extends React.Component {
 
     render() {
 
-       console.log(this.state.select)
-
-       if(this.state.num === 0){
-        var num = Math.round(Math.random() * 99)
-        this.setState(state =>{
-            return {num : num}
-        })
-       }
-
-        if (this.props.max === null) {
+        if (this.props.free === true) {
 
             return (
             <div className='bg-light-green dib br3 pa3 ma2  bw2 shadow-5 fl w-100'>
@@ -49,14 +39,14 @@ class Bingo extends React.Component {
         else if(this.state.select) {
             return (
             <div onClick={this.DeSelectNumber} className='bg-light-green dib br3 pa3 ma2  bw2 shadow-5 fl w-100'>
-              {this.state.num}
+              {this.props.num}
             </div>
             )
         }
         else  {
             return (
             <div onClick={this.SelectNumber} className='bg-light-white dib br3 pa3 ma2  bw2 shadow-5 fl w-100' >
-               {this.state.num}
+               {this.props.num}
             </div>
             )
         }
