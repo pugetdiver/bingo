@@ -5,7 +5,7 @@ import { withCookies, Cookies } from 'react-cookie';
 
 function getRandomInt(minn, maxx) {
     var min = Math.ceil(minn);
-    var max = Math.floor(maxx);
+    var max = Math.floor(maxx) + 1;
     return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
 }
 
