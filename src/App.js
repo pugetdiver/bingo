@@ -5,6 +5,9 @@ import ResetButton from './components/ResetButton';
 
 import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
+import BingoNumberGenerator from './components/BingoNumberGenerator';
+
+
 function GenerateBoard() {
   return `
  { 
@@ -29,6 +32,22 @@ constructor(props){
 
    Initialize = () => {
     const { cookies } = this.props;
+
+    if(!cookies.cookies.drawnNumbers)
+    {
+      cookies.set('drawnNumbers', '{ "drawnNumbers": [] }', { path: '/' })
+    }
+
+    if(!cookies.cookies.currentNumber)
+    {
+      cookies.set('currentNumber', -1, { path: '/' })
+    }
+
+    if(!cookies.cookies.drawingNumbers)
+    {
+      cookies.set('drawingNumbers', false, { path: '/' })
+    }
+
     if (!cookies.cookies.initialized) {
       cookies.set('initialized', false, { path: '/' })
     }
@@ -36,6 +55,9 @@ constructor(props){
     if (!cookies.cookies.initialized) {
       cookies.set('board', GenerateBoard(), { path: '/' })
       cookies.set('initialized', true, { path: '/' })
+      cookies.set('drawnNumbers', '{ "drawnNumbers": [] }', { path: '/' })
+      cookies.set('currentNumber', -1, { path: '/' })
+      cookies.set('drawingNumbers', false , { path: '/' })
     }
 
   }
@@ -54,6 +76,7 @@ constructor(props){
 
       <BingoList />
       <ResetButton onClick={this.onClick}/>
+      <BingoNumberGenerator/>
     </div>
   );
   }
