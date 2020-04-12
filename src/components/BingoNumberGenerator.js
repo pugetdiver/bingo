@@ -9,7 +9,7 @@ function getRandomInt(minn, maxx) {
 }
 
 function displayNumber(currentNumber) {
-
+    
     if (currentNumber === '-1') {
         return '';
     }
@@ -27,10 +27,10 @@ function displayNumber(currentNumber) {
             return 'N - ' + currentNumber
         }
         else if (currentNumber < 61) {
-            return 'I - ' + currentNumber
+            return 'G - ' + currentNumber
         }
         else if (currentNumber < 76) {
-            return 'N - ' + currentNumber
+            return 'O - ' + currentNumber
         }
         else {
             return ''
