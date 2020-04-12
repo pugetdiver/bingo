@@ -9,7 +9,7 @@ function getRandomInt(minn, maxx) {
 }
 
 function displayNumber(currentNumber) {
-    
+
     if (currentNumber === '-1') {
         return '';
     }
@@ -39,6 +39,30 @@ function displayNumber(currentNumber) {
     }
 }
 
+function getPreviousNumbers(drawnNumbers) {
+var previousNumbers = JSON.parse(drawnNumbers).drawnNumbers;
+if(previousNumbers.length === 0)
+{
+    return ''
+}
+else
+{
+    var i = previousNumbers.length;
+    var x = 0;
+    var numbers = ''
+    while(x < i)
+    {
+        var numberString = displayNumber(previousNumbers[x])
+        if(numbers.length === 0){
+numbers = numberString
+        }else{
+        numbers = numbers + ' // ' + numberString }
+        x = x + 1
+    }
+
+    return numbers
+}
+}
 
 class BingoNumberGenerator extends React.Component {
 
@@ -110,6 +134,7 @@ class BingoNumberGenerator extends React.Component {
                     <button className="bg-light-green dib br3 pa3 ma2  bw2 shadow-5 "
                     onClick={this.generateNumber}>Get Number</button>
                     <h1>{displayNumber(cookies.cookies.currentNumber)}</h1>
+                    <div className="center w-50">{getPreviousNumbers(cookies.cookies.drawnNumbers)}</div>
                 </div>
             )
         }
